@@ -1,53 +1,51 @@
 
-	var computerChoices = ["r","p","s"];
-	// var userGuess;
-	// var computerGuess;
+	
+	var win = 0;
+	var loss = 0;
+	var tie = 0;
 
-
+	
 	document.onkeyup = function(event) {
+		// onkeyup is an event that listens for a keyboard press. When it happens, it passes the event as an argument to the funtion.
+       var userGuess = event.key;
+       // event.key refers to the value of the key that was pressed
 
-      // Determines which key was pressed.
-      var userGuess = document.getElementById("user");
-
-      user.textContent = event.key;
+        var computerChoices = ["r","p","s"]; 
      
-     
-      // Randomly chooses a choice from the options array. This is the Computer's guess.
-      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+     	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+     	// Math.random is a global object's function that generates a random number from 0 to 1. It is then multiplied by the length of the array (3) and rounded down by Math.floor.
 
-      // Alerts the key the user pressed (userGuess).
-      document.write("User guess: " + userGuess+"<br> <br>");
+    	if ((userGuess==="r") || (userGuess==="p") || (userGuess==="s")) {
 
-      // Alerts the Computer's guess.
-      document.write("Computer guess: " + computerGuess + "<br><br>");
+		      if ((userGuess==="r") && (computerGuess==="s")) {
+				win++;
+			}	else if ((userGuess==="r") && (computerGuess==="p")) {
+				loss++;			
+			}	else if ((userGuess==="s") && (computerGuess==="r")) {
+				loss++;		
+			}   else if ((userGuess==="s") && (computerGuess==="p")) {
+				win++;		
+			}	else if ((userGuess==="p") && (computerGuess==="r")) {
+				win++;
+			}	else if ((userGuess==="p") && (computerGuess==="s")) {
+				loss++
+			}  else {
+		 		tie++;
+		 	}
+		 } else {
+		 	alert ("Enter the correct letter");
+		 }
+		 	var output = 
+			"<p> You chose: " + userGuess + "</p>"+
+			"<p> The computer chose: " + computerGuess + "</p>" +
+			"<p> Wins: " + win + "</p>"+
+			"<p> Loss: " + loss + "</p>"+
+			"<p> Tie: " + tie + "</p>";
+			
+		document.getElementById("game").innerHTML = output;
 
-      	var userWin = document.getElementById("userWin");
-		var computerWin = document.getElementById("computerWin");
-		var userTie = document.getElementById("tie");
+		};
 
-      if (userGuess==="r" && computerGuess==="s") {
-		userWin = true;
+
 	
-	}	else if (userGuess==="r" && computerGuess==="p") {
-		computerWin = true;
-		
-	}	else if (userGuess==="s" && computerGuess==="r") {
-		computerWin = true
-	
-	}  else if (userGuess==="s" && computerGuess==="p") {
-		userWin =true
-	
-	}	else if (userGuess==="p" && computerGuess==="r") {
-		userWin =true
-	}	else if (userGuess==="p" && computerGuess==="s") {
-		computerWin = true
-	 }  else {
-	 	userTie=true
-	 }
-
-	 if (userWin){
-
-	 }
-    };
-
 
